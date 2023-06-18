@@ -3,6 +3,7 @@ package com.neelkanth.homeApplication.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,13 +23,13 @@ public class FrontController {
 	private WeatherService service;
 	
 	@GetMapping("/v1/getAll/")
-	public Mono<List<Weather>> fetchAll(){
-		return service.fetchAll();
+	public ResponseEntity<Mono<List<Weather>>> fetchAll(){
+		return ResponseEntity.ok(service.fetchAll());
 	}
 	
 	@PostMapping("/v1/setWeatherRecord/")
-	public Weather setWeather(@RequestBody Weather weatherRecord) {
+	public ResponseEntity<Weather> setWeather(@RequestBody Weather weatherRecord) {
 		System.out.println("User ID: "+weatherRecord.toString());
-		return service.setRecord(weatherRecord);
+		return ResponseEntity.ok(service.setRecord(weatherRecord));
 	}
 }
