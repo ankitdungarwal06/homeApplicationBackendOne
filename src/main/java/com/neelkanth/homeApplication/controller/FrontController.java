@@ -30,6 +30,7 @@ public class FrontController {
 	@PostMapping("/v1/setWeatherRecord/")
 	public ResponseEntity<Weather> setWeather(@RequestBody Weather weatherRecord) {
 		System.out.println("User ID: "+weatherRecord.toString());
+		System.out.println("received place as "+weatherRecord.getPlace());;
 		return ResponseEntity.ok(service.setRecord(weatherRecord));
 	}
 }
