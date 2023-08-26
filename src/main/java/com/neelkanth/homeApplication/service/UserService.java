@@ -1,5 +1,6 @@
 package com.neelkanth.homeApplication.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,13 @@ public class UserService {
 		}
 	}
 	
-	public Void removeUser(Users model) {
-		repository.delete(findById(model.getId()));
+	public Void removeUser(Long id) {
+		repository.delete(findById(id));
 		Void v = null;
 		return v;
+	}
+	
+	public List<Users> showAll(){
+		return repository.findAll();
 	}
 }

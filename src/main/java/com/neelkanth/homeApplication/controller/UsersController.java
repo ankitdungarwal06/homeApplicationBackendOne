@@ -2,25 +2,42 @@ package com.neelkanth.homeApplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.neelkanth.homeApplication.model.Users;
 import com.neelkanth.homeApplication.service.UserService;
 
-@RestController
+@Controller
 public class UsersController {
 
 	@Autowired
 	UserService service;
 	
+	
+	@GetMapping("/")
+    public String viewHomePage(Model model) {
+        model.addAttribute("allUserslist", service.showAll());
+        return "index";
+    }
+	
+	@GetMapping("/addnew")
+    public String addNewEmployee(Model model) {
+        Users user = new Users();
+        model.addAttribute("user", user);
+        return "newUser";
+    }
+	
 	@PostMapping("/api/v1/createNew/")
-	public ResponseEntity<Users> createNewEntry(@RequestBody Users model){
-		return ResponseEntity.ok(service.createNew(model));
+	public String createNewEntry(@ModelAttribute("user") Users model){
+		service.createNew(model);
+		return "redirect:/";
 	}
 	
 	@GetMapping("/api/v1/findUserById/")
@@ -28,9 +45,10 @@ public class UsersController {
 		return ResponseEntity.ok(service.findById(id));
 	}
 	
-	@DeleteMapping("/api/v1/deleteUser/")
-	public ResponseEntity<Void> removeUser(@RequestBody Users model){
-		return ResponseEntity.ok(service.removeUser(model));
+	@GetMapping("/api/v1/deleteUser/{id}")
+	public String removeUser(@PathVariable(value = "id") Long id){
+		service.removeUser(id);
+		return "redirect:/";
 	}
 	
 }

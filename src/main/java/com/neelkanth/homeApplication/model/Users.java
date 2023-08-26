@@ -25,4 +25,5 @@ public class Users {
 	private Date dateOfBirth;
 	private String bloodGroup;
 	private String extra;
+	private String email;
 }
