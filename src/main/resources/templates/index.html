@@ -22,6 +22,8 @@
 	<th>Last Name</th>
 	<th>Date Of Birth</th>
 	<th>Blood Group</th>
+	<th>Email</th>
+	<th>Phone No</th>
 	<th>Extra</th>
 </tr>
 </thead>
@@ -32,6 +34,8 @@
 		<td th:text="${user.lastName}"></td>
 		<td th:text="${user.dateOfBirth}"></td>
 		<td th:text="${user.bloodGroup}"></td>
+		<td th:text="${user.email}"></td>
+		<td th:text="${user.phoneNo1}"></td>
 		<td th:text="${user.extra}"></td>
 		<td>
 				<a th:href="@{/api/v1/deleteUser/{id}(id=${user.id})}"

@@ -26,4 +26,13 @@ public class Users {
 	private String bloodGroup;
 	private String extra;
 	private String email;
+	private String addressLine1;
+	private String addressLine2;
+	private String addressLine3;
+	private String addressLine4;
+	private String phoneNo1;
+	private String phoneNo2;
+	private String phoneNo3;
+	private String phoneNo4;
+	private String phoneNo5;
 }
