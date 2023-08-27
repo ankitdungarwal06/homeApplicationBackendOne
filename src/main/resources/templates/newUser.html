@@ -14,8 +14,28 @@
 		<hr>
 		<h2>Save User</h2>
 
-		<form action="#" th:action="@{/api/v1/createNew/}" th:object="${user}"
+</tbody>
+		<form action="#" th:action="@{/api/v1/createNew/}" th:object="${user.users}"
 			method="POST">
+<thead>
+<tr>
+	<th>Salution</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+		<td>
+		<select class="form-control" id="testOrder" name="selectedPrefix">
+        <option value="">Select Test Order</option>
+<option th:each="namePrefix:${user.namePrefix}"
+                th:value="${namePrefix.prefix}"
+                th:text="${namePrefix.prefix}"></option>
+                </select>
+		</td>
+		
+</tr>
+
 			<input type="text" th:field="*{firstName}" placeholder="First Name"
 				class="form-control mb-4 col-4"> 
 			<input type="text" th:field="*{middleName}" placeholder="Middle Name"

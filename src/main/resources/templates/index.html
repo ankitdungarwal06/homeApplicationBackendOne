@@ -17,6 +17,7 @@
 		class = "table table-striped table-responsive-md">
 	<thead>
 <tr>
+	<th>Salution</th>
 	<th>First Name</th>
 	<th>Middle Name</th>
 	<th>Last Name</th>
@@ -28,17 +29,26 @@
 </tr>
 </thead>
 <tbody>
-<tr th:each="user:${allUserslist}">
-		<td th:text="${user.firstName}"></td>
-		<td th:text="${user.middleName}"></td>
-		<td th:text="${user.lastName}"></td>
-		<td th:text="${user.dateOfBirth}"></td>
-		<td th:text="${user.bloodGroup}"></td>
-		<td th:text="${user.email}"></td>
-		<td th:text="${user.phoneNo1}"></td>
-		<td th:text="${user.extra}"></td>
+
+<tr th:each="users, namePrefix:${allList.users}">
 		<td>
-				<a th:href="@{/api/v1/deleteUser/{id}(id=${user.id})}"
+		<select class="form-control" id="testOrder" name="testOrder">
+        <option value="">Select Test Order</option>
+<option th:each="namePrefix:${allList.namePrefix}"
+                th:value="${namePrefix.prefix}"
+                th:text="${namePrefix.prefix}"></option>
+                </select>
+		</td>
+		<td th:text="${users.firstName}"></td>
+		<td th:text="${users.middleName}"></td>
+		<td th:text="${users.lastName}"></td>
+		<td th:text="${users.dateOfBirth}"></td>
+		<td th:text="${users.bloodGroup}"></td>
+		<td th:text="${users.email}"></td>
+		<td th:text="${users.phoneNo1}"></td>
+		<td th:text="${users.extra}"></td>
+		<td>
+				<a th:href="@{/api/v1/deleteUser/{id}(id=${users.id})}"
 				class="btn btn-danger">Delete</a>
 	</td>
 </tr>

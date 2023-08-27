@@ -4,14 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.neelkanth.homeApplication.entity.AddNewEntity;
+import com.neelkanth.homeApplication.entity.MainEntity;
 import com.neelkanth.homeApplication.model.Users;
+import com.neelkanth.homeApplication.service.NamePrefixService;
 import com.neelkanth.homeApplication.service.UserService;
 
 @Controller
@@ -20,23 +22,31 @@ public class UsersController {
 	@Autowired
 	UserService service;
 	
+	@Autowired
+	private NamePrefixService namePrefixService;
+	
 	
 	@GetMapping("/")
     public String viewHomePage(Model model) {
-        model.addAttribute("allUserslist", service.showAll());
+		MainEntity entity = new MainEntity();
+		entity.setUsers(service.showAll());
+		entity.setNamePrefix(namePrefixService.findAll());
+        model.addAttribute("allList", entity);
         return "index";
     }
 	
 	@GetMapping("/addnew")
     public String addNewEmployee(Model model) {
-        Users user = new Users();
-        model.addAttribute("user", user);
+		AddNewEntity entity = new AddNewEntity();
+		entity.setUsers(new Users());
+		entity.setNamePrefix(namePrefixService.findAll());
+        model.addAttribute("user", entity);
         return "newUser";
     }
 	
 	@PostMapping("/api/v1/createNew/")
-	public String createNewEntry(@ModelAttribute("user") Users model){
-		service.createNew(model);
+	public String createNewEntry(@ModelAttribute("user") AddNewEntity model){
+		service.createNew(model.getUsers());
 		return "redirect:/";
 	}
 	
@@ -50,5 +60,4 @@ public class UsersController {
 		service.removeUser(id);
 		return "redirect:/";
 	}
-	
 }
