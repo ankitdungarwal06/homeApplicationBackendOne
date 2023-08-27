@@ -34,7 +34,7 @@ public class UsersController {
 	@GetMapping("/users/")
     public String viewHomePageUser(Model model) {
 		model.addAttribute("allList", service.showAll());
-        return "indexUsers";
+        return "viewUsers";
     }
 	
 	@GetMapping("/addnew")

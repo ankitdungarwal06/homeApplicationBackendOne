@@ -25,7 +25,7 @@ public class DoctorController {
 	@GetMapping("/allDocs/")
     public String viewHomePage(Model model) {
 		model.addAttribute("doctorList", doctorService.getAll());
-        return "indexDoctor";
+        return "viewDoctor";
     }
 	
 	
