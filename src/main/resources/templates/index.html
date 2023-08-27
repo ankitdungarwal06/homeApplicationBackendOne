@@ -31,14 +31,7 @@
 <tbody>
 
 <tr th:each="users, namePrefix:${allList.users}">
-		<td>
-		<select class="form-control" id="testOrder" name="testOrder">
-        <option value="">Select Test Order</option>
-<option th:each="namePrefix:${allList.namePrefix}"
-                th:value="${namePrefix.prefix}"
-                th:text="${namePrefix.prefix}"></option>
-                </select>
-		</td>
+		<td th:text="${users.prefix}"></td>
 		<td th:text="${users.firstName}"></td>
 		<td th:text="${users.middleName}"></td>
 		<td th:text="${users.lastName}"></td>

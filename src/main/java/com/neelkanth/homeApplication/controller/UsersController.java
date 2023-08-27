@@ -46,6 +46,7 @@ public class UsersController {
 	
 	@PostMapping("/api/v1/createNew/")
 	public String createNewEntry(@ModelAttribute("user") AddNewEntity model){
+		model.getUsers().setPrefix(model.getSelectedPrefix());
 		service.createNew(model.getUsers());
 		return "redirect:/";
 	}
