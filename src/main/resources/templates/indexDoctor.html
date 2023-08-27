@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2" align="center">
+
+<h3>Users List</h3>
+<a th:href="@{/addNewDoctor}" class="btn btn-primary btn-sm mb-3" >Add Doctor</a>
+	<table style="width:80%" border="1"
+		class = "table table-striped table-responsive-md">
+	<thead>
+<tr>
+	<th>First Name</th>
+	<th>MiddleName</th>
+	<th>Last Name</th>
+	<th>Phone Numbers Official</th>
+	<th>Phone Numbers Personal</th>
+	<th>Started From</th>
+	<th>Speciality</th>
+</tr>
+</thead>
+<tbody>
+
+<tr th:each="doc:${doctorList}">
+		<td th:text="${doc.firstName}"></td>
+		<td th:text="${doc.middleName}"></td>
+		<td th:text="${doc.lastName}"></td>
+		<td th:text="${doc.phoneNumbersOfficial}"></td>
+		<td th:text="${doc.phoneNumbersPersonal}"></td>
+		<td th:text="${doc.startedFrom}"></td>
+		<td th:text="${doc.specialiti}"></td>
+		<td>
+				<a th:href="@{/api/v1/deleteDoctor/{id}(id=${doc.id})}"
+				class="btn btn-danger">Delete</a>
+	</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
