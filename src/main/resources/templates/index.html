@@ -30,7 +30,7 @@
 </thead>
 <tbody>
 
-<tr th:each="users, namePrefix:${allList.users}">
+<tr th:each="users:${allList}">
 		<td th:text="${users.prefix}"></td>
 		<td th:text="${users.firstName}"></td>
 		<td th:text="${users.middleName}"></td>

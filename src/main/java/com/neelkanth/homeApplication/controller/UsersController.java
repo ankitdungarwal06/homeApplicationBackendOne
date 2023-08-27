@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.neelkanth.homeApplication.entity.AddNewEntity;
-import com.neelkanth.homeApplication.entity.MainEntity;
 import com.neelkanth.homeApplication.model.Users;
 import com.neelkanth.homeApplication.service.NamePrefixService;
 import com.neelkanth.homeApplication.service.UserService;
@@ -28,10 +27,7 @@ public class UsersController {
 	
 	@GetMapping("/")
     public String viewHomePage(Model model) {
-		MainEntity entity = new MainEntity();
-		entity.setUsers(service.showAll());
-		entity.setNamePrefix(namePrefixService.findAll());
-        model.addAttribute("allList", entity);
+		model.addAttribute("allList", service.showAll());
         return "index";
     }
 	
