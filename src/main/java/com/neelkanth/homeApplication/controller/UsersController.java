@@ -24,11 +24,17 @@ public class UsersController {
 	@Autowired
 	private NamePrefixService namePrefixService;
 	
-	
 	@GetMapping("/")
     public String viewHomePage(Model model) {
-		model.addAttribute("allList", service.showAll());
+		//model.addAttribute("allList", service.showAll());
         return "index";
+    }
+	
+	
+	@GetMapping("/users/")
+    public String viewHomePageUser(Model model) {
+		model.addAttribute("allList", service.showAll());
+        return "viewUsers";
     }
 	
 	@GetMapping("/addnew")

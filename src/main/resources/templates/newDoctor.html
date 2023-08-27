@@ -10,45 +10,25 @@
 </head>
 <body>
 	<div class="container">
-		<h1>User Management System</h1>
+		<h1>Doctor Entry</h1>
 		<hr>
-		<h2>Save User</h2>
+		<h2>Save Doctor</h2>
 
-</tbody>
-		<form action="#" th:action="@{/api/v1/createNew/}" th:object="${user.users}"
+		<form action="#" th:action="@{/api/v1/createNewDoctor/}" th:object="${doctor}"
 			method="POST">
-<thead>
-<tr>
-	<th>Salution</th>
-</tr>
-</thead>
-<tbody>
-
-<tr>
-		<td>
-		<select class="form-control" id="testOrder" name="selectedPrefix">
-        <option value="">Select Test Order</option>
-<option th:each="namePrefix:${user.namePrefix}"
-                th:value="${namePrefix.prefix}"
-                th:text="${namePrefix.prefix}"></option>
-                </select>
-		</td>
-		
-</tr>
-
 			<input type="text" th:field="*{firstName}" placeholder="First Name"
 				class="form-control mb-4 col-4"> 
 			<input type="text" th:field="*{middleName}" placeholder="Middle Name"
 				class="form-control mb-4 col-4">
 			<input type="text" th:field="*{lastName}" placeholder="Last Name"
 				class="form-control mb-4 col-4"> 
-			<input type="text" th:field="*{bloodGroup}" placeholder="Blood Group"
+			<input type="text" th:field="*{phoneNumbersOfficial}" placeholder="Blood Group"
 				class="form-control mb-4 col-4">
-				<input type="text" th:field="*{email}" placeholder="Email"
+				<input type="text" th:field="*{phoneNumbersPersonal}" placeholder="Email"
 				class="form-control mb-4 col-4">
-				<input type="text" th:field="*{phoneNo1}" placeholder="Phone no 1"
+				<input type="text" th:field="*{startedFrom}" placeholder="Phone no 1"
 				class="form-control mb-4 col-4"> 
-			<input type="text" th:field="*{extra}" placeholder="Extra"
+			<input type="text" th:field="*{specialiti}" placeholder="Extra"
 				class="form-control mb-4 col-4">
 
 			<button type="submit" class="btn btn-info col-2">Save
@@ -57,7 +37,7 @@
 
 		<hr>
 
-		<a th:href="@{/users/}"> Back to User List</a>
+		<a th:href="@{/allDocs/}"> Back to Doctor List</a>
 	</div>
 </body>
 </html>
