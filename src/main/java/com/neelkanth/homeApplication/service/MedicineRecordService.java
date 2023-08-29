@@ -24,6 +24,12 @@ public class MedicineRecordService {
 	}
 	
 	public MedicineRecords saveRecord(MedicineRecords medicineRecordObject) {
+		if (medicineRecordObject.getIsGeneric() == null) {
+			medicineRecordObject.setIsGeneric(false);
+		}
+		if (medicineRecordObject.getPrescribedByDoctor() == null) {
+			medicineRecordObject.setPrescribedByDoctor(false);
+		}
 		return medicineRepository.save(medicineRecordObject);
 	}
 	
