@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neelkanth.homeApplication.entity.NewsFromNewAPIResponse;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.apache.http.HttpResponse;
 
 @Service
@@ -27,6 +30,7 @@ public class NewsAPINewsService {
 
 	public NewsFromNewAPIResponse fetchNews() {
 		NewsFromNewAPIResponse responseData = null;
+		NewsFromNewAPIResponse toRes = new NewsFromNewAPIResponse();
 		String formatUrl = url + q + "&from=" + from + "&sortBy=" + sortBy + "&apiKey=" + apiKey;
 		try {
             CloseableHttpClient httpClient = HttpClients.createDefault();

@@ -1,5 +1,8 @@
 package com.neelkanth.homeApplication.controller;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,6 +35,7 @@ public class UsersController {
     public String viewHomePage(Model model) {
 		//TODO: planning to show news in index page,, got news api in place,, need to integrate with UI
 		//model.addAttribute("news", apiNewsService.fetchNews());
+		model. addAttribute("standardDate", new Date());
         return "index";
     }
 	
