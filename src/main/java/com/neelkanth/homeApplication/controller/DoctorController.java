@@ -25,7 +25,7 @@ public class DoctorController {
 	@GetMapping("/allDocs/")
     public String viewHomePage(Model model) {
 		model.addAttribute("doctorList", doctorService.getAll());
-        return "viewDoctor";
+        return "doctor/viewDoctor";
     }
 	
 	
@@ -33,7 +33,7 @@ public class DoctorController {
     public String addNewDoctor(Model model) {
 		DoctorInfo doctorObj = new DoctorInfo();
         model.addAttribute("doctor", doctorObj);
-        return "newDoctor";
+        return "doctor/newDoctor";
     }
 	
 	@GetMapping("/api/v1/deleteDoctor/{id}")

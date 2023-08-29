@@ -34,7 +34,7 @@ public class UsersController {
 	@GetMapping("/users/")
     public String viewHomePageUser(Model model) {
 		model.addAttribute("allList", service.showAll());
-        return "viewUsers";
+        return "users/viewUsers";
     }
 	
 	@GetMapping("/addnew")
@@ -43,7 +43,7 @@ public class UsersController {
 		entity.setUsers(new Users());
 		entity.setNamePrefix(namePrefixService.findAll());
         model.addAttribute("user", entity);
-        return "newUser";
+        return "users/newUser";
     }
 	
 	@PostMapping("/api/v1/createNew/")

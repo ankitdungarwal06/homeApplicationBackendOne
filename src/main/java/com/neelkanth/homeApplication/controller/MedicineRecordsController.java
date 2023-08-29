@@ -26,7 +26,7 @@ public class MedicineRecordsController {
 	@GetMapping("/allMedicines/")
     public String viewHomePage(Model model) {
 		model.addAttribute("medicineList", medicineRecordService.fetchAllMedicine());
-        return "viewMedicine";
+        return "medicine/viewMedicine";
     }
 	
 	
@@ -34,7 +34,7 @@ public class MedicineRecordsController {
     public String addNewMedicine(Model model) {
 		MedicineRecords record = new MedicineRecords();
         model.addAttribute("medicine", record);
-        return "newMedicine";
+        return "medicine/newMedicine";
     }
 	
 	@GetMapping("/api/v1/deleteMedicine/{id}")
