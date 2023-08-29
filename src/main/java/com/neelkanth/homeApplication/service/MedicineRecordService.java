@@ -2,6 +2,7 @@ package com.neelkanth.homeApplication.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,20 @@ public class MedicineRecordService {
 		medicineRepository.delete(medicineRecordObject);
 		Void v = null;
 		return v;
+	}
+	
+	public void deleteRecord(Long id) {
+		medicineRepository.delete(fetchOnId(id));
+	}
+	
+	public MedicineRecords fetchOnId(Long id) {
+		Optional<MedicineRecords> res = Optional.of(medicineRepository.getById(id));
+		if(res.isPresent()) {
+			return res.get();
+		}
+		else {
+			return new MedicineRecords();
+		}
 	}
 
 	public List<MedicineRecords> fetchOnSpeciality(String speciality) {

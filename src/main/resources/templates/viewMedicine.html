@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2" align="center">
+
+<h3>Medicines</h3>
+<a th:href="@{/addNewMedicine/}" class="btn btn-primary btn-sm mb-3" >Add Medicine</a>
+	<table style="width:80%" border="1"
+		class = "table table-striped table-responsive-md">
+	<thead>
+<tr>
+	<th>Medicine Name</th>
+	<th>Manufacture Date</th>
+	<th>Expiry Date</th>
+	<th>Is Generic</th>
+	<th>Prescribed By Dotor</th>
+	<th>Used for</th>
+	<th>Medicine Type</th>
+	<th>Bought from store</th>
+	<th>Remarks</th>
+	<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+
+<tr th:each="med:${medicineList}">
+		<td th:text="${med.medicineName}"></td>
+		<td th:text="${med.manufuactureDate}"></td>
+		<td th:text="${med.expiryDate}"></td>
+		<td th:text="${med.isGeneric}"></td>
+		<td th:text="${med.prescribedByDoctor}"></td>
+		<td th:each="use: ${med.usedForIssue}" th:text="${use}"></td>
+		<td th:text="${med.medicineType}"></td>
+		<td th:text="${med.boughtFromStoreName}"></td>
+		<td th:text="${med.remarks}"></td>
+		<td th:each="comment:${med.comments}" th:text="${comment}"></td>
+		<td>
+				<a th:href="@{/api/v1/deleteMedicine/{id}(id=${med.id})}"
+				class="btn btn-danger">Delete</a>
+	</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

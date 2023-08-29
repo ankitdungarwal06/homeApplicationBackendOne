@@ -3,6 +3,9 @@ package com.neelkanth.homeApplication.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,10 +29,12 @@ public class MedicineRecords implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String medicineName;
+	@DateTimeFormat(iso=ISO.DATE)
 	private Date manufuactureDate;
+	@DateTimeFormat(iso=ISO.DATE)
 	private Date expiryDate;
-	private boolean isGeneric;
-	private boolean prescribedByDoctor;
+	private Boolean isGeneric;
+	private Boolean prescribedByDoctor;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "doctorInfo_id")
 	private DoctorInfo doctor;
