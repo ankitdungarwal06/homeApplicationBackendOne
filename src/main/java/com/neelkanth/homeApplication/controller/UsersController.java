@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.neelkanth.homeApplication.entity.AddNewEntity;
 import com.neelkanth.homeApplication.model.Users;
 import com.neelkanth.homeApplication.service.NamePrefixService;
+import com.neelkanth.homeApplication.service.NewsAPINewsService;
 import com.neelkanth.homeApplication.service.UserService;
 
 @Controller
@@ -24,9 +25,13 @@ public class UsersController {
 	@Autowired
 	private NamePrefixService namePrefixService;
 	
+	@Autowired
+	private NewsAPINewsService apiNewsService;
+	
 	@GetMapping("/")
     public String viewHomePage(Model model) {
-		//model.addAttribute("allList", service.showAll());
+		//TODO: planning to show news in index page,, got news api in place,, need to integrate with UI
+		//model.addAttribute("news", apiNewsService.fetchNews());
         return "index";
     }
 	
