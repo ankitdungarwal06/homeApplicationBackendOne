@@ -13,7 +13,7 @@
 		<h1>Doctor Entry</h1>
 		<hr>
 		<h2>Save Doctor</h2>
-
+		
 		<form action="#" th:action="@{/api/v1/createNewDoctor/}" th:object="${doctor}"
 			method="POST">
 			<input type="text" th:field="*{firstName}" placeholder="First Name"
@@ -38,6 +38,8 @@
 		<hr>
 
 		<a th:href="@{/allDocs/}"> Back to Doctor List</a>
+		<br>
+		<a th:href="@{/}"> Home</a>
 	</div>
 </body>
 </html>
