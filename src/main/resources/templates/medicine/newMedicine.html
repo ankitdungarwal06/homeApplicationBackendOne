@@ -14,12 +14,19 @@
 		<hr>
 		<h2>Save Doctor</h2>
 
-		<form action="#" th:action="@{/api/v1/createNewMedicineRecord/}" th:object="${medicine}" method="POST">
+		<form action="#" th:action="@{/api/v1/createNewMedicineRecord/}" th:object="${medicine.medicineRecords}" method="POST">
 			<input type="text" th:field="*{medicineName}" placeholder="Medicine Name" class="form-control mb-4 col-4">
 			<input type="text" th:field="*{prescribedByDoctor}" placeholder="Prescribed By Doctor"
 				class="form-control mb-4 col-4" value="false">
 			<input type="date" th:field="*{manufuactureDate}" placeholder="Manufuacture Date" class="form-control mb-4 col-4">
 			<input type="date" th:field="*{expiryDate}" placeholder="Epiry Date" class="form-control mb-4 col-4">
+			<p>
+			<select class="form-control" id="testDoctor" name="selectedDoctor">
+        <option value="">Select Doctor</option>
+<option th:each="doc:${medicine.doctor}"
+                th:value="${doc.id}"
+                th:text="${doc.firstName + doc.middleName + doc.lastName}"></option>
+                </select></p>
 			<input type="text" th:field="*{isGeneric}" placeholder="is Generic" value="John" class="form-control mb-4 col-4">
 			<input type="text" th:field="*{doctor}" placeholder="Doctor" class="form-control mb-4 col-4">
 			<input type="text" th:field="*{usedForIssue}" placeholder="Used For Issue" class="form-control mb-4 col-4">

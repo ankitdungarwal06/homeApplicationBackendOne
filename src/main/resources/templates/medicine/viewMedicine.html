@@ -18,6 +18,7 @@
 	<thead>
 <tr>
 	<th>Medicine Name</th>
+	<th>Doctor Name</th>
 	<th>Manufacture Date</th>
 	<th>Expiry Date</th>
 	<th>Is Generic</th>
@@ -33,6 +34,7 @@
 
 <tr th:each="med:${medicineList}">
 		<td th:text="${med.medicineName}"></td>
+		<td th:each="doc: ${med.doctor}" th:text="${doc.firstName+doc.lastName}"></td>
 		<td th:text="${med.manufuactureDate}"></td>
 		<td th:text="${med.expiryDate}"></td>
 		<td th:text="${med.isGeneric}"></td>

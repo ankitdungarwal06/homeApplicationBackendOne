@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.neelkanth.homeApplication.entity.MedicineWithDoctor;
 import com.neelkanth.homeApplication.model.MedicineRecords;
+import com.neelkanth.homeApplication.service.DoctorService;
 import com.neelkanth.homeApplication.service.MedicineRecordService;
 
 @Controller
@@ -17,9 +19,13 @@ public class MedicineRecordsController {
 	@Autowired
 	private MedicineRecordService medicineRecordService;
 	
+	@Autowired
+	private DoctorService doctorService;
+	
 	@PostMapping("/api/v1/createNewMedicineRecord/")
-	public String createNewEntry(@ModelAttribute("medicine") MedicineRecords model){
-		medicineRecordService.saveRecord(model);
+	public String createNewEntry(@ModelAttribute("medicine") MedicineWithDoctor model){
+		model.getMedicineRecords().setDoctor(doctorService.fetchById(model.getSelectedDoctor()));
+		medicineRecordService.saveRecord(model.getMedicineRecords());
 		return "redirect:/";
 	}
 	
@@ -32,8 +38,10 @@ public class MedicineRecordsController {
 	
 	@GetMapping("/addNewMedicine/")
     public String addNewMedicine(Model model) {
-		MedicineRecords record = new MedicineRecords();
-        model.addAttribute("medicine", record);
+		MedicineWithDoctor object = new MedicineWithDoctor();
+		object.setMedicineRecords(new MedicineRecords());
+		object.setDoctor(doctorService.getAll());
+        model.addAttribute("medicine", object);
         return "medicine/newMedicine";
     }
 	
